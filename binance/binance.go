@@ -11,6 +11,8 @@
 */
 package binance
 
+import "net/http"
+
 //"errors"
 
 const (
@@ -31,7 +33,7 @@ func handleErr(r jsonResponse) error {
     return nil
 }
 */
-func New(key, secret string) *Binance {
-	client := NewClient(key, secret)
+func New(key, secret string, httpClient *http.Client) *Binance {
+	client := NewWithCustomHTTPClient(key, secret, httpClient)
 	return &Binance{client}
 }
