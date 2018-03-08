@@ -50,6 +50,16 @@ func NewClient(key, secret string) (c *Client) {
 	return client
 }
 
+// Creates a new Binance  with custom HTTP Client
+func NewWithCustomHTTPClient(key, secret string, httpClient *http.Client) (c *Client) {
+	client := &Client{
+		key:        key,
+		secret:     secret,
+		httpClient: httpClient,
+	}
+	return client
+}
+
 func (c *Client) do(method, resource, payload string, auth bool, result interface{}) (resp *http.Response, err error) {
 
 	fullUrl := fmt.Sprintf("%s/%s", BaseUrl, resource)
